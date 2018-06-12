@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- to take up the width of the device-->
+	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+</head>
+<body>
+	<header>
+		<a href="index.html" class="header-logo">Ride My Way</a>
+		
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="trips.html">Trips</a></li>
+			</ul>
+			<a href="" class="header-right button green white-text" >New Ride</a>
+			<a href="signup.html" class="header-right">Signup</a>
+			<a href="login.html" class="header-right ">Login</a>
+		</nav>
+		
+	</header>
+	
+	<div class="container">
+
+		<div class="index-left-div">
+						
+			<h3>Searh Ride Offer</h3>
+			<form class="post_offer" method="post" action="">
+				<div class="input-group">
+					<label>From</label>
+					<input class="form-input" type="text" name="from" id="from" />
+				</div>
+
+				<div class="input-group">
+					<label>To</label>
+					<input class="form-input" type="text" name="to" id="to" />
+				</div>
+
+				<div class="input-group">
+					<label>Depature Date</label>
+					<input class="form-input" type="text" placeholder="dd/mm/yyyy" name="date" id="date" />
+				</div>
+
+				<input class="button green" type="submit" name="search_ride" value="SEARCH" />
+
+			</form>
+		
+		</div>
+
+		<div class="right-div">
+
+			<div class="search_resuts">
+			
+
+			<h3>Ride Offers</h3>
+			<ul>
+				<li><p>From: kampala <br>To: Mbaraza<p> <p class="desc">This is the description of the journey</p>
+				<a href="" class="button blue">Send Request</a>
+				</li>
+				<li>From: kampala <br>To: Mbaraza <p class="desc">This is the description of the journey</p>
+				<a href="" class="button blue">Send Request</a>
+				</li>
+				<li>From: kampala <br>To: Mbaraza <p class="desc">This is the description of the journey</p>
+				<a href="" class="button blue">Send Request</a>
+				</li>
+				
+			</ul>
+		</div>
+
+		<div class="post_offer_div" style="display: none;">
+			<h3>Post Ride Offer</h3>
+			<form class="post_offer" method="post" action="">
+				<div class="input-group">
+					<label>From</label>
+					<input class="form-input" type="text" name="from" id="from" />
+				</div>
+
+				<div class="input-group">
+					<label>To</label>
+					<input class="form-input" type="text" name="to" id="to" />
+				</div>
+
+				<div class="input-group">
+					<label>Depature Date</label>
+					<input class="form-input" type="text" placeholder="dd/mm/yyyy" name="date" id="date" />
+				</div>
+
+				<div class="input-group">
+					<label>Time</label>
+					<input class="form-input" type="text" placeholder="10:12" name="time" id="time" />
+				</div>
+
+				<div class="input-group">
+					<label>Spots in Car</label>
+					<input class="form-input" type="text" placeholder="4" name="spots" id="spots" />
+				</div>
+
+				<div class="input-group">
+					<label>Description</label>
+					<textarea class="input-text" rows="5"></textarea>
+				</div>
+				<input type="submit" class="button blue" name="post_offer" value="OFFER" />
+
+			</form>
+		</div>
+		</div>
+
+		
+	</div>
+	
+	<footer> </footer>
+
+</body>
+</html>
