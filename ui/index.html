@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- to take up the width of the device-->
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
-<body>
+<body onload="initialise()">
 	<header>
 		<a href="index.html" class="header-logo">Ride My Way</a>
 		
@@ -14,7 +14,7 @@
 				<li><a href="index.html">Home</a></li>
 				<li><a href="trips.html">Trips</a></li>
 			</ul>
-			<a href="" class="header-right button green white-text" >New Ride</a>
+			<a href="#" class="header-right button green white-text" onclick="show_post_form()" >New Ride</a>
 			<a href="signup.html" class="header-right">Signup</a>
 			<a href="login.html" class="header-right ">Login</a>
 		</nav>
@@ -23,7 +23,7 @@
 	
 	<div class="container">
 
-		<div class="index-left-div">
+		<div class="index-left-div" id="index-left-div">
 						
 			<h3>Searh Ride Offer</h3>
 			<form class="post_offer" method="post" action="">
@@ -50,25 +50,23 @@
 
 		<div class="right-div">
 
-			<div class="search_resuts">
-			
+			<div class="search_resuts" id="search_resuts">
+				<h3>Ride Offers</h3>
+				<ul>
+					<li><p>From: kampala <br>To: Mbaraza<p> <p class="desc">This is the description of the journey</p>
+					<a href="" class="button blue">Send Request</a>
+					</li>
+					<li>From: kampala <br>To: Mbaraza <p class="desc">This is the description of the journey</p>
+					<a href="" class="button blue">Send Request</a>
+					</li>
+					<li>From: kampala <br>To: Mbaraza <p class="desc">This is the description of the journey</p>
+					<a href="" class="button blue">Send Request</a>
+					</li>
+					
+				</ul>
+			</div>
 
-			<h3>Ride Offers</h3>
-			<ul>
-				<li><p>From: kampala <br>To: Mbaraza<p> <p class="desc">This is the description of the journey</p>
-				<a href="" class="button blue">Send Request</a>
-				</li>
-				<li>From: kampala <br>To: Mbaraza <p class="desc">This is the description of the journey</p>
-				<a href="" class="button blue">Send Request</a>
-				</li>
-				<li>From: kampala <br>To: Mbaraza <p class="desc">This is the description of the journey</p>
-				<a href="" class="button blue">Send Request</a>
-				</li>
-				
-			</ul>
-		</div>
-
-		<div class="post_offer_div" style="display: none;">
+		<div class="post_offer_div" id="post_offer_div">
 			<h3>Post Ride Offer</h3>
 			<form class="post_offer" method="post" action="">
 				<div class="input-group">
@@ -110,6 +108,8 @@
 	</div>
 	
 	<footer> </footer>
+	<script type="text/javascript" src="assets/js/main.js"></script>
 
 </body>
+
 </html>

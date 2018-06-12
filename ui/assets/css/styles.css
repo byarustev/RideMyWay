@@ -35,7 +35,7 @@ body{
 	background-image: url("../images/signup.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
-	height: calc(100vh - 90px);
+	height: calc(100vh - 80px);
 	/*border-radius: 5px;*/
 	color: #fff;
 	box-sizing: border-box;
@@ -486,6 +486,20 @@ td,th{
 }
 
 
+/*error handling */
+.error{
+	margin-top: 5px;
+    margin-bottom: 0;
+    font-size: 13px;
+    margin-left: 0;
+    color: #86181d;
+    border-color: #cea0a5;
+    background-color: #ffdce0;
+    border-color: #cea0a5;
+    border-radius:3px;
+    padding: 2px;
+    padding-left: 4px;
+}
 
 
 /*media query to make website responsive*/
