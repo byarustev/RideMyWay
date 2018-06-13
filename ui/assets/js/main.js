@@ -1,3 +1,44 @@
+// values
+// global variables
+var uname;
+var email;
+var password;
+var confirm_password;
+
+var name_error;
+var email_error;
+var password_error;
+var password_error2;
+
+
+
+window.onload = function(){
+   	uname=document.getElementById("name");
+	email=document.getElementById("email");
+	password=document.getElementById("password");
+	confirm_password=document.getElementById("confirm_password");
+ 	//add blur events
+	uname.addEventListener("blur",nameValidator,true);
+	email.addEventListener("blur",emailValidator,true);
+	password.addEventListener("blur",passwordValidator,true);
+	confirm_password.addEventListener("blur",confirmValidator,true);
+
+		// error display objects
+	name_error=document.getElementById("name_error");
+	email_error=document.getElementById("email_error");
+	password_error=document.getElementById("password_error");
+	password_error2=document.getElementById("password_error2");
+
+	name_error.style.visibility="hidden";
+	email_error.style.visibility="hidden";
+	password_error.style.visibility="hidden";
+	password_error2.style.visibility="hidden";
+ }
+
+
+
+
+
 
 function toggle_element(id){
 	var element = document.getElementById(id);
@@ -32,48 +73,45 @@ function show_post_form(){
 }
 
 function validate_signup(){
-	// values
-	var name=document.forms["signup"]["name"];
-	var email=document.forms["signup"]["email"];
-	var password=document.forms["signup"]["password"];
-	var confirm_password=document.forms["signup"]["confirm_password"];
-
-
-	// error display objects
-	var name_error=document.getElementById("name_error");
-	var email_error=document.getElementById("email_error");
-	var password_error=document.getElementById("password_error");
-	var password_error2=document.getElementById("password_error2");
-
-	name.addEventListener("blur",nameValidator,true)
-	email.addEventListener("blur",emailValidator,true)
-	password.addEventListener("blur",passwordValidator,true)
-	confirm_password.addEventListener("blur",confirmValidator,true)
-
-	if(name.value==""){
-		name.style.border="1px solid #cea0a5";
-		name_error.textContent="Name is required";
-		name.focus()
+	
+	if(uname.value==""){
+		uname.style.border="1px solid #d63031";
+		name_error.style.visibility="visible";
+		name_error.textContent="* name is required";
+		uname.focus()
 		return false;
 	}
 
+	var reg=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 	if(email.value==""){
-		email.style.border="1px solid #cea0a5";
-		email_error.textContent="Name is required";
+		email.style.border="1px solid #d63031";
+		email_error.style.visibility="visible";
+		email_error.textContent="* email is required";
+		email.focus()
+		return false;
+		
+	}else if(!reg.test(email.value)){
+		email.style.border="1px solid #d63031";
+		email_error.style.visibility="visible";
+		email_error.textContent="* invalid email format";
 		email.focus()
 		return false;
 	}
 
 	if(password.value==""){
-		password.style.border="1px solid #cea0a5";
-		password_error.textContent="Name is required";
+		password.style.border="1px solid #d63031";
+		password_error.style.visibility="visible";
+		password_error.textContent="* password is required";
 		password.focus()
 		return false;
 	}
 
-	if(password.value !==confirm_password.value ){
-		password.style.border="1px solid #cea0a5";
-		password_error2.textContent="Name is required";
+	if(password.value !=confirm_password.value ){
+		password.style.border="1px solid #d63031";
+		confirm_password.style.border="1px solid #d63031";
+		password_error2.style.visibility="visible";
+		password_error2.textContent="** password mismatch";
 		confirm_password.focus()
 		return false;
 	}
@@ -82,17 +120,20 @@ function validate_signup(){
 
 
 function nameValidator(){
-	if(name.value!=""){
-		name.style.border=""
+	if(uname.value!=""){
+		uname.style.border="1px solid #d1d5da";
 		name_error.innerHtml=""
+		name_error.style.visibility="hidden";
 		return true;
 	}
 }
 
 function emailValidator(){
 	if(email.value!=""){
-		email.style.border=""
+		email.style.border="1px solid #d1d5da";
 		email_error.innerHtml=""
+		email_error.style.visibility="hidden";
+		
 		return true;
 	}
 }
@@ -100,16 +141,21 @@ function emailValidator(){
 
 function passwordValidator(){
 	if(password.value!=""){
-		password.style.border=""
+		password.style.border="1px solid #d1d5da"
 		password_error.innerHtml=""
+		password_error.style.visibility="hidden";
+		
 		return true;
 	}
 }
 
 function confirmValidator(){
 	if(confirm_password.value!=""){
-		confirm_password.style.border=""
+		password.style.border="1px solid #d1d5da"
+		confirm_password.style.border="1px solid #d1d5da"
 		password_error2.innerHtml=""
+		password_error2.style.visibility="hidden";
+		
 		return true;
 	}
 }

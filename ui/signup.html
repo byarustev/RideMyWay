@@ -6,6 +6,7 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- to take up the width of the device-->
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+	<script type="text/javascript" src="assets/js/main.js"></script>
 </head>
 <body>
 	<header>
@@ -42,33 +43,38 @@
 			</div>
 			<div class="signup-div">
 				<h3>Signup for Ride My Way</h3>
-				<form class="signup-form" name="signup" method="post" action="" >
+				<form class="signup-form" name="signup" onsubmit="return validate_signup()" method="post" action="" >
 					<div class="input-group">
-						<label>Name</label>
-						<input class="form-input" type="text" name="name" />
-						<p id="name_error" class="error"></p>
+						<label>Name <span id="name_error" class="error"></span></label>
+						<input class="form-input" type="text" name="name" id="name" />
+						
 					</div>
 					<div class="input-group">
-						<label>Email</label>
-						<input class="form-input" type="text" name="email" />
-						<p id="email_error" class="error"></p>
+						<label>Email <span id="email_error" class="error"></span></label>
+						<input class="form-input" type="text" name="email" id="email" />
+						
 					</div>
 					<div class="input-group">
-						<label>Password</label>
-						<input class="form-input" type="Password" name="password" >
-						<p id="password_error" class="error"></p>
+						<label>
+						Password <span id="password_error" class="error"></span>
+						</label>
+						<input class="form-input" type="Password" name="password" id="password" />
+						
 					</div>
 					<div class="input-group">
-						<label>Confirm Password</label>
-						<input class="form-input" type="Password" name="confirm_password" >
-						<p id="password_error2" class="error"></p>
+						<label>
+							Confirm Password <span id="password_error2" class="error"></span>
+						</label>
+						<input class="form-input" type="Password" name="confirm_password" id="confirm_password" >
+						
 					</div>
-					<input type="submit" class="button blue" onclick="validate_signup()" name="signup" value="SIGNUP" />
+					<input type="submit" class="button blue"  name="signup" value="SIGNUP" />
 				</form>
 			</div>
 		
 	</div>
 
-	<script type="text/javascript" src="assets/js/main.js"></script>
+	
 </body>
+
 </html>
