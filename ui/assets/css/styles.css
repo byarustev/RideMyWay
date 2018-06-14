@@ -646,6 +646,20 @@ input[type="submit"]{
 		color:#111;
 	}
 
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#2f3640;
+	}
+
 }
 
 @media screen and (max-width:960px){
@@ -750,6 +764,19 @@ input[type="submit"]{
 		color:#111;
 	}
 
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#2f3640;
+	}
 }
 
 /* making the form responsive for devices less than 640px*/
@@ -830,6 +857,19 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+	}
+
+
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		/*float: right;*/
+		margin: 0 auto;
+		padding:0 20px; 
+		color:#2f3640;
 	}
 }
 
