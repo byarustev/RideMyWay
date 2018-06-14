@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- to take up the width of the device-->
 	<link rel="stylesheet" type="text/css" href="assets/css/styles.css">
 </head>
-<body onload="initialise()">
+<body >
 	<header>
 		<a href="index.html" class="header-logo">Ride My Way</a>
 		
@@ -32,7 +32,7 @@
 						<label>From</label>
 					</div>
 					<div class="input-col">
-						<input class="form-input" type="text" name="from" id="from" />
+						<input class="form-input" type="text" name="search_from" id="search_from" />
 					</div>
 				</div>
 				<div class="form-row">
@@ -40,7 +40,7 @@
 						<label>To</label>
 					</div>
 					<div class="input-col">
-						<input class="form-input" type="text" name="to" id="to" />
+						<input class="form-input" type="text" name="search_to" id="seearch_to" />
 					</div>
 				</div>
 
@@ -79,13 +79,15 @@
 
 		<div class="post_offer_div" id="post_offer_div">
 			<center><h3>Post Ride Offer</h3></center>
-			<form class="post_offer" method="post" action="">
+			<form class="post_offer" method="post" action=""
+			 onsubmit="return validate_ride_post()" >
 
 				<div class="form-row"><!-- start form row  -->
 					<div class="label-col">
 						<label>From</label>
 					</div>
 					<div class="input-col">
+						<span id="from_error" class="error"></span>
 						<input class="form-input" type="text" name="from" id="from" />
 					</div>
 				</div>
@@ -95,6 +97,7 @@
 						<label>To</label>
 					</div>
 					<div class="input-col">
+						<span id="to_error" class="error"></span>
 						<input class="form-input" type="text" name="to" id="to" />
 					</div>
 				</div>
@@ -104,6 +107,7 @@
 						<label>Depature Date</label>
 					</div>
 					<div class="input-col">
+						<span id="date_error" class="error"></span>
 						<input class="form-input" type="text" placeholder="dd/mm/yyyy" name="date" id="date" />
 					</div>
 				</div>
@@ -113,6 +117,7 @@
 						<label>Time</label>
 					</div>
 					<div class="input-col">
+						<span id="time_error" class="error"></span>
 						<input class="form-input" type="text" placeholder="10:12" name="time" id="time" />
 					</div>
 				</div>
@@ -122,7 +127,8 @@
 						<label>No. Free Seats</label>
 					</div>
 					<div class="input-col">
-						<input class="form-input" type="text" placeholder="4" name="spots" id="spots" />
+						<span id="spots_error" class="error"></span>
+						<input class="form-input" type="text" placeholder="4" name="spots" id="spots"  />
 					</div>
 				</div>
 
@@ -131,13 +137,14 @@
 						<label>Description</label>
 					</div>
 					<div class="input-col">
-						<textarea class="input-text" rows="5"></textarea>
+						<span id="description_error" class="error"></span>
+						<textarea class="input-text" rows="5" name="description" id="description"></textarea>
 					</div>
 				</div>
 
 				<div class="form-row">
 					
-					<input type="submit" class="button blue" value="OFFER" />
+					<input type="submit" class="button blue" value="OFFER"  />
 					
 				</div><!--end form row-->
 			</form>
@@ -148,8 +155,16 @@
 	</div>
 	
 	<footer> </footer>
-	<script type="text/javascript" src="assets/js/main.js"></script>
+	
 
 </body>
-
+<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets/js/formvalidation.js"></script>
+<script type="text/javascript">
+	window.onload = function(){
+		initialise();
+		initialise_index_validations();
+   		
+ 	}
+</script>
 </html>

@@ -24,6 +24,7 @@ body{
 
 
 .app-title{
+
 	width: calc(100% - 10px);
 	text-align: center;
 	font-size: 24px;
@@ -51,7 +52,7 @@ body{
 	background-color: rgba(0,0,0,0.5);
 }
 
-.inner-left ul, h2, p, h3{
+.inner-left ul, .inner-left h2, .inner-left p, .inner-left h3{
 	margin-left: 3%;
 
 	padding: 0px;
