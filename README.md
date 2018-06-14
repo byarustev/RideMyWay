@@ -9,5 +9,7 @@ and passengers to join available ride offers.
 - Passangers can request to join a ride
 - drivers can view, accept and reject join requests
 
+## [visit site](https://byarustev.github.io/RideMyWay/ui/)
+
 ## Index Page Interface
 ![alt text](https://raw.githubusercontent.com/byarustev/RideMyWay/feature/ui/design/index.png)
