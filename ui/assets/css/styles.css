@@ -224,6 +224,21 @@ header .header-right{
 	margin: 0 auto;
 }
 
+.users-left{
+width: 410px;
+float: left;
+border-right: 1px solid #1111;
+padding: 1%;
+}
+
+.users-right{
+width: 410px;
+padding: 1%;
+border-left: 1px solid #1111;
+float: left;
+}
+
+
 .search_div{
 	width: 80%;
 	margin: 0 auto;
@@ -639,6 +654,8 @@ input[type="submit"]{
 		width: 100%;
 	}
 
+
+
 	.modal-content{
 		width: 70%;
 	}
@@ -744,6 +761,19 @@ input[type="submit"]{
 	
 	}
 
+	.users-left{
+	width: 95%;
+	margin: 1%;
+	padding: 1%;
+	}
+
+	.users-right{
+	width: 95%;
+	margin: 1%;
+	border:none;
+	}
+
+
 	.post_offer_div{
 		width: 95%;
 		margin: 1%;
@@ -810,6 +840,22 @@ input[type="submit"]{
 	width: 320px;
 	}
 	
+
+
+	.users-left{
+	width: 95%;
+	margin: 1%;
+	display: block;
+	padding: 1%;
+	}
+
+	.users-right{
+	width: 95%;
+	margin: 1%;
+	display: block;
+	border:none;
+	}
+
 	.modal-content{
 		width: 90%;
 	}
