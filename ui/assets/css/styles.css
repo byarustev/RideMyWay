@@ -1,13 +1,33 @@
-body{
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400');
+
+html,body{
 	background: #f9f9f9;
 	margin: 0px;
+}
+*{
+	/*margin: 0;*/
+	padding: 0;
+	box-sizing: border-box;
+	font:14px 'Open Sans', sans-serif;
+}
+
+h3{
+	font-size:17px;
+}
+h2{
+	font-size:20px;
 }
 
 .container{
 	width: 960px; 
 	margin: 0 auto;
+	box-sizing: border-box;
 }
 
+img{
+
+	max-width: 100%;/*for image not to go off the screen*/
+}
 /*LOGIN PAGE AND SIGN UP*/
 .login-div{
 	position: absolute;
@@ -24,30 +44,30 @@ body{
 
 
 .app-title{
-
+	padding: 2%;
 	width: calc(100% - 10px);
 	text-align: center;
 	font-size: 24px;
 }
 
 .left-div{
-	width:500px;
+	width:48%;
 	float: left;
 	background-image: url("../images/signup.jpg");
-	background-size: cover;
 	background-repeat: no-repeat;
 	height: calc(100vh - 80px);
 	/*border-radius: 5px;*/
 	color: #fff;
-	box-sizing: border-box;
+	margin-right: 4px;
+	background-size: 100%;
+	
 }
-
 
 
 .inner-left{
 	float: left;
 	padding: 0;
-	width:500px;
+	width:100%;
 	height: 100%;
 	background-color: rgba(0,0,0,0.5);
 }
@@ -65,9 +85,9 @@ line-height: 20px;
 }
 
 .signup-div{
-	width:350px;
-	float: left;
-	margin-left: 10px;
+	width:50%;
+	float: right;
+	
 }
 
 /*sign up*/
@@ -109,16 +129,7 @@ input[type="text"], input[type="password"],textarea{
     border-radius: 3px;
 }
 
-input[type="submit"]{
-	width:calc(100% - 10px);
-	margin-left:5px;
-	margin-right:5px;
-	min-height: 38px;
-	background-color: #27ae60;
-	border: 1px solid #d1d5da;
-    border-radius: 3px; 
-    color:white;
-}
+
 .login_btn{
 	width: calc(100% - 10px);
 }
@@ -200,66 +211,6 @@ header .header-right{
 	color:white !important;
 }
 
-/*desktop version*/
-@media only screen and (min-width: 1000px) {
-	header .header-logo{
-	
-		display: block; 
-		margin:21px 0;
-		text-align: left;
-		line-height: 30px;
-		padding: 0px 10px 0 10px; 
-		
-		float: left;
-	} 
-
-	header nav ul{
-		line-height: 40px;
-		margin: 20px 0 0 10px;
-		float: left;
-	}
-
-	header nav ul li a {
-		font-size: 16px;
-		line-height: 40px;
-		color:#111; 
-	}
-
-	header .header-right{
-		display: block;
-		font-size: 16px;
-		line-height: 30px;
-		text-transform: uppercase;
-		border:solid 1px #111;
-		float: right;
-		margin-right: 10px;
-		margin-top: 20px;
-		border-radius: 3px;
-		padding:0 20px; 
-		color:#111;
-	}
-
-}
-
-@media screen and (max-width: 320px){
-	header .header-logo{
-		font-size:19;
-		display: block; 
-		margin:10px 0;
-		text-align: left;
-		line-height: 30px;
-		padding: 0px 10px 0 20px; 
-		
-		float: left;
-	} 
-}
-
-
-/*post ride form*/
-.post_offer_div{
-	width: 450px;
-	margin: 0 10%;
-}
 
 
 .search_ride_offer{
@@ -269,7 +220,17 @@ header .header-right{
 
 
 .search_resuts{
-	width: 400px;
+	width: 80%;
+	margin: 0 auto;
+}
+
+.search_div{
+	width: 80%;
+	margin: 0 auto;
+}
+/*post ride form*/
+.post_offer_div{
+	width: 80%;
 	margin: 0 auto;
 }
 
@@ -290,6 +251,7 @@ header .header-right{
 	margin-top: 4px;
 	border: 1px solid #d1d5da;
 	border-radius: 3px;
+	margin-right:5px;
 	padding: 5px;
 }
 
@@ -353,9 +315,6 @@ header .header-right{
   display: none;
 }
 
-
-
-
 .button.blue {
   background: #3471b8;
   border-color: #255184 #244f80 #1e4068;
@@ -386,7 +345,7 @@ header .header-right{
 }
 
 
-.lt-ie9 .button:before {
+.button:before {
   display: none;
 }
 
@@ -582,11 +541,25 @@ button:focus {
 
 /* for the submit button inside form-row  */
 .form-row input[type=submit] {
-  margin-right: 0;
+  margin-right: 5px;
   width: 40%;
   padding: 3px;
   cursor: pointer;
+  box-sizing: border-box;
   float: right;
+}
+
+input[type="submit"]{
+	width:calc(100% - 10px);
+	
+	min-height: 38px;
+	
+	background-color: #27ae60;
+	border: 1px solid #d1d5da;
+    border-radius: 3px; 
+    color:white;
+    /*box-sizing: border-box;*/
+
 }
 
 /* style label col to be 25% and to the left */
@@ -613,37 +586,205 @@ button:focus {
   clear: both;
 }
 
-/* making the form responsive for devices less than 640px*/
-@media screen and (max-width: 640px) {
-  .label-col, .input-col, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-}
+
 
 /*end of index page stylings*/
 
 /*media query to make website responsive*/
+@media only screen and (min-width: 960px) {
+	
 
-@media screen and (max-width:959px){
+	header .header-logo{
+	
+		display: block; 
+		margin:21px 0;
+		text-align: left;
+		line-height: 30px;
+		padding: 0px 10px 0 10px; 
+		
+		float: left;
+	} 
+
+	header nav ul{
+		line-height: 40px;
+		margin: 20px 0 0 10px;
+		float: left;
+	}
+
+	header nav ul li a {
+		font-size: 16px;
+		line-height: 40px;
+		color:#111; 
+	}
+
+	header .header-right{
+		display: block;
+		font-size: 16px;
+		line-height: 30px;
+		text-transform: uppercase;
+		border:solid 1px #111;
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#111;
+	}
+
+}
+
+@media screen and (max-width:960px){
 	/*this means that as soon as our website get to this we are going to use css inside this*/
+	.container{
+		width: 100%;
+	}
+
+	.modal-content{
+		width: 70%;
+	}
+
+	.index-left-div{
+		width: 100%; 
+		
+	}
+
+	.right-div{
+		width: 100%; 
+		
+	}
+
+	.search_resuts{
+	width: 95%;
+	
+	}
+	.post_offer_div{
+		width: 95%;
+	}
+	.search_div{
+		width: 95%;
+		
+	}
+
 	.rides{
 	width: 320px;
 	margin: 0 auto;
 	padding-top: 20px;
 	}
 
+	.left-div{
+		width:100%;
+	}
+
+
+	.signup-div{
+		width:100%;
+	}
+
 	table{
 		width: 100%;
 	}
 
+	header{
+		height: fit-content;
+		width: 100%;
+		padding-bottom: 2%;
+	}
+	.form-row{
+		margin-top:4px;
+	}
+	header .header-logo{
+		display: block; 
+		margin:6px auto;
+		text-align: center;
+		line-height: 30px;
+		padding: 10px; 
+	} 
+
+	header nav ul{
+		line-height: 40px;
+		margin: 10px 0 0 10px;
+		display: block;
+	}
+
+	header nav ul{
+		line-height: 40px;
+		margin: 10px 0 0 10px;
+		display: block;
+	}
+
+	header nav ul li a {
+		font-size: 16px;
+		line-height: 40px;
+		color:#111; 
+	}
+
+	header .header-right{
+		display: block;
+		font-size: 16px;
+		line-height: 30px;
+		text-transform: uppercase;
+		border:solid 1px #111;
+		float: right;
+		width: 120px;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#111;
+	}
+
 }
 
-@media screen and (max-width:640px){
+/* making the form responsive for devices less than 640px*/
+@media screen and (max-width: 640px) {
 	/*will work for all the tablets iphone 5,7 and sumsung gallaxy*/
 
+	.container{
+	width: 100%; 
+	
+	}
 
-	.rides{
+	.post_offer_div{
+		width: 95%;
+		margin: 1%;
+	}
+	.modal-content{
+		width: 90%;
+	}
+	.container{
+		width: 100%;
+	}
+
+	.index-left-div{
+		width: 100%; 
+		
+	}
+
+	.right-div{
+		width: 100%; 
+		
+	}
+
+	.search_resuts{
+	width: 95%;
+	
+	}
+
+	.search_div{
+		width: 95%;
+		
+	}
+
+	.label-col label {
+	  display: block;
+	  text-align: left;
+	}
+
+  .label-col, .input-col, input[type=submit] {
+    width: 100%;
+  }
+
+  .rides{
 	width: 100%;
 	margin: 0 auto;
 	padding-top: 20px;
@@ -668,6 +809,30 @@ button:focus {
 	.container{
 	width: 320px;
 	}
+	
+	.modal-content{
+		width: 90%;
+	}
+
+	.search_resuts{
+	width: 95%;
+	margin: 1%;
+	}
+
+	.search_div{
+		width: 95%;
+		margin: 1%;
+	}
+
+	header .header-logo{
+		font-size:19;
+		display: block; 
+		margin: 0 auto;
+		text-align: left;
+		line-height: 30px;
+		padding: 0px 10px 0 10px; 
+	
+	} 
 
 	.rides{
 	width: 320px;
@@ -686,6 +851,12 @@ button:focus {
 
 	.signup-div{
 		width:100%;
+	}
+
+	.inner-left{
+	
+	width:100%;
+	height: 100%;
 	}
 	
 }

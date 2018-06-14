@@ -24,39 +24,41 @@
 	<div class="container">
 
 		<div class="index-left-div" id="index-left-div">
-						
-			<center><h3>Searh Ride Offer</h3></center>
-			<form method="post" action="">
-				<div class="form-row"><!-- start form row  -->
-					<div class="label-col">
-						<label>From</label>
+			<div class="search_div">			
+				<center><h3>Searh Ride Offer</h3></center>
+				<form method="post" action="">
+					<div class="form-row"><!-- start form row  -->
+						<div class="label-col">
+							<label>From</label>
+						</div>
+						<div class="input-col">
+							<input class="form-input" type="text" name="search_from" id="search_from" />
+						</div>
 					</div>
-					<div class="input-col">
-						<input class="form-input" type="text" name="search_from" id="search_from" />
+					<div class="form-row">
+						<div class="label-col">
+							<label>To</label>
+						</div>
+						<div class="input-col">
+							<input class="form-input" type="text" name="search_to" id="seearch_to" />
+						</div>
 					</div>
-				</div>
-				<div class="form-row">
-					<div class="label-col">
-						<label>To</label>
-					</div>
-					<div class="input-col">
-						<input class="form-input" type="text" name="search_to" id="seearch_to" />
-					</div>
-				</div>
 
-				<div class="form-row">
-					<div class="label-col">
-						<label>Depature Date</label>
+					<div class="form-row">
+						<div class="label-col">
+							<label>Depature Date</label>
+						</div>
+						<div class="input-col">
+							<input class="form-input" type="text" placeholder="dd/mm/yyyy" name="date" id="date" />
+						</div>
 					</div>
-					<div class="input-col">
-						<input class="form-input" type="text" placeholder="dd/mm/yyyy" name="date" id="date" />
-					</div>
-				</div>
-				<div class="form-row">
-					<input class="button green" type="submit" name="search_ride" value="SEARCH" />
-				</div>	
-			</form>
-		
+					<div class="form-row">
+						<div class="input-group">
+						<input class="button green" type="submit" name="search_ride" value="SEARCH" />
+						</div>
+					</div>	
+				</form>
+			</div>
 		</div>
 
 		<div class="right-div">
@@ -143,9 +145,9 @@
 				</div>
 
 				<div class="form-row">
-					
-					<input type="submit" class="button blue" value="OFFER"  />
-					
+					<div class="input-group">
+						<input type="submit" class="button blue" value="OFFER"  />
+					</div>
 				</div><!--end form row-->
 			</form>
 		</div>

@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="login-div">
 			<p class="app-title">Ride My Way</p>
-			<form class="login-form" name="login" onsubmit="return validate_login()" method="post" action="" >
+			<form class="login-form" name="login" onsubmit="return validate_login()" method="post" action="index.html" >
 				<div class="input-group">
 					<label>Email <span id="email_error" class="error"></span></label>
 					<input class="form-input" type="text" name="email" id="email">
@@ -21,7 +21,9 @@
 					<label>Password <span id="password_error" class="error"></span></label>
 					<input class="form-input" type="Password" name="password" id="password" >
 				</div>
+				<div class="input-group">
 				<input class="button blue login_btn" type="submit" name="submit_login" value="LOGIN"  />
+				</div>
 			</form>
 
 
