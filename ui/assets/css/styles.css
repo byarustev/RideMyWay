@@ -87,7 +87,7 @@ line-height: 20px;
 .signup-div{
 	width:50%;
 	float: right;
-	
+	padding: 2%;
 }
 
 /*sign up*/
@@ -240,7 +240,7 @@ float: left;
 
 
 .search_div{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 /*post ride form*/
@@ -692,7 +692,7 @@ input[type="submit"]{
 		width: 95%;
 	}
 	.search_div{
-		width: 95%;
+		width: 70%;
 		
 	}
 
@@ -709,6 +709,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 5%;
 	}
 
 	table{
@@ -828,7 +829,7 @@ input[type="submit"]{
 	}
 
 	.search_div{
-		width: 95%;
+		width: 80%;
 		
 	}
 
@@ -857,6 +858,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 1%;
 	}
 
 
@@ -937,6 +939,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 1%;
 	}
 
 	.inner-left{
