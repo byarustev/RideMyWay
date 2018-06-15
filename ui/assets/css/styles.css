@@ -87,7 +87,7 @@ line-height: 20px;
 .signup-div{
 	width:50%;
 	float: right;
-	
+	padding: 2%;
 }
 
 /*sign up*/
@@ -240,7 +240,7 @@ float: left;
 
 
 .search_div{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 /*post ride form*/
@@ -646,6 +646,20 @@ input[type="submit"]{
 		color:#111;
 	}
 
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#2f3640;
+	}
+
 }
 
 @media screen and (max-width:960px){
@@ -678,7 +692,7 @@ input[type="submit"]{
 		width: 95%;
 	}
 	.search_div{
-		width: 95%;
+		width: 70%;
 		
 	}
 
@@ -695,6 +709,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 5%;
 	}
 
 	table{
@@ -750,6 +765,19 @@ input[type="submit"]{
 		color:#111;
 	}
 
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#2f3640;
+	}
 }
 
 /* making the form responsive for devices less than 640px*/
@@ -801,7 +829,7 @@ input[type="submit"]{
 	}
 
 	.search_div{
-		width: 95%;
+		width: 80%;
 		
 	}
 
@@ -830,6 +858,20 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 1%;
+	}
+
+
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		/*float: right;*/
+		margin: 0 auto;
+		padding:0 20px; 
+		color:#2f3640;
 	}
 }
 
@@ -897,6 +939,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 1%;
 	}
 
 	.inner-left{
