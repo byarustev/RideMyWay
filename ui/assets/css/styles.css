@@ -4,7 +4,7 @@ html,body{
 	background: #f9f9f9;
 	margin: 0px;
 }
-*{
+p,h2,h3,a,li,ul{
 	/*margin: 0;*/
 	padding: 0;
 	box-sizing: border-box;
@@ -85,7 +85,7 @@ line-height: 20px;
 }
 
 .signup-div{
-	width:50%;
+	width:45%;
 	float: right;
 	padding: 2%;
 }
@@ -161,11 +161,11 @@ li{
 header .header-logo{
 	font-size: 24px;
 	font-weight: 900;
-	color:#42a933;  
+	color:#10ac84;  
 	text-transform: uppercase;
 	display: block; 
 	margin:0 auto;
-	font-family: tahoma;
+	/*font-family: tahoma;*/
 
 	text-align: center;
 	padding: 20px 0; 
@@ -525,13 +525,39 @@ button:focus {
 	padding:0;
 	margin-bottom:6px;
 }
-
+.trips_list{
+	padding:0;
+	margin-bottom:6px;
+}
 .approve{
 	margin:0;
 }
 .decline{
 	margin: 0;
 }
+
+/*.count:before {
+  content: '\25CF';
+  font-size: 50px;
+}*/
+.count{
+	background: #3498db;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#ffffff;
+    font-size: 1.6em;
+    -webkit-border-radius: 50%;
+    display: table-cell;
+  	vertical-align: middle;
+  	text-align: center;
+  }
+
+.grn{
+	background: #10ac84;
+}
+
 
 .requests li {
   display: flex;
@@ -541,6 +567,22 @@ button:focus {
   padding: 6px !important;
   margin-top: 2px;
 
+}
+
+.trips_list li{
+ 	border:solid 1px #ccc;
+ 	border-radius: 4px;
+  	padding: 6px !important;
+  	margin-top: 2px;
+}
+
+
+.desc{
+	display: none;
+}
+
+.trips_list li span{
+ 	display: block;
 }
 
 
@@ -788,11 +830,14 @@ input[type="submit"]{
 	width: 100%; 
 	
 	}
-
+	h3,h2{
+	padding: 1%;
+	}
 	.users-left{
 	width: 95%;
 	margin: 1%;
 	padding: 1%;
+	border:none;
 	}
 
 	.users-right{
