@@ -4,7 +4,7 @@ html,body{
 	background: #f9f9f9;
 	margin: 0px;
 }
-*{
+p,h2,h3,a,li,ul{
 	/*margin: 0;*/
 	padding: 0;
 	box-sizing: border-box;
@@ -85,9 +85,9 @@ line-height: 20px;
 }
 
 .signup-div{
-	width:50%;
+	width:45%;
 	float: right;
-	
+	padding: 2%;
 }
 
 /*sign up*/
@@ -161,11 +161,11 @@ li{
 header .header-logo{
 	font-size: 24px;
 	font-weight: 900;
-	color:#42a933;  
+	color:#10ac84;  
 	text-transform: uppercase;
 	display: block; 
 	margin:0 auto;
-	font-family: tahoma;
+	/*font-family: tahoma;*/
 
 	text-align: center;
 	padding: 20px 0; 
@@ -224,8 +224,23 @@ header .header-right{
 	margin: 0 auto;
 }
 
+.users-left{
+width: 410px;
+float: left;
+border-right: 1px solid #1111;
+padding: 1%;
+}
+
+.users-right{
+width: 410px;
+padding: 1%;
+border-left: 1px solid #1111;
+float: left;
+}
+
+
 .search_div{
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 /*post ride form*/
@@ -276,7 +291,7 @@ header .header-right{
   text-decoration: none;
   text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
   border: 1px solid;
-  border-radius: 7px;
+  border-radius: 3px; 
   outline: 0;
   -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
@@ -510,13 +525,39 @@ button:focus {
 	padding:0;
 	margin-bottom:6px;
 }
-
+.trips_list{
+	padding:0;
+	margin-bottom:6px;
+}
 .approve{
 	margin:0;
 }
 .decline{
 	margin: 0;
 }
+
+/*.count:before {
+  content: '\25CF';
+  font-size: 50px;
+}*/
+.count{
+	background: #3498db;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    color:#ffffff;
+    font-size: 1.6em;
+    -webkit-border-radius: 50%;
+    display: table-cell;
+  	vertical-align: middle;
+  	text-align: center;
+  }
+
+.grn{
+	background: #10ac84;
+}
+
 
 .requests li {
   display: flex;
@@ -526,6 +567,22 @@ button:focus {
   padding: 6px !important;
   margin-top: 2px;
 
+}
+
+.trips_list li{
+ 	border:solid 1px #ccc;
+ 	border-radius: 4px;
+  	padding: 6px !important;
+  	margin-top: 2px;
+}
+
+
+.desc{
+	display: none;
+}
+
+.trips_list li span{
+ 	display: block;
 }
 
 
@@ -631,6 +688,20 @@ input[type="submit"]{
 		color:#111;
 	}
 
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#2f3640;
+	}
+
 }
 
 @media screen and (max-width:960px){
@@ -638,6 +709,8 @@ input[type="submit"]{
 	.container{
 		width: 100%;
 	}
+
+
 
 	.modal-content{
 		width: 70%;
@@ -661,7 +734,7 @@ input[type="submit"]{
 		width: 95%;
 	}
 	.search_div{
-		width: 95%;
+		width: 70%;
 		
 	}
 
@@ -678,6 +751,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 5%;
 	}
 
 	table{
@@ -733,6 +807,19 @@ input[type="submit"]{
 		color:#111;
 	}
 
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		float: right;
+		margin-right: 10px;
+		margin-top: 20px;
+		border-radius: 3px;
+		padding:0 20px; 
+		color:#2f3640;
+	}
 }
 
 /* making the form responsive for devices less than 640px*/
@@ -743,6 +830,22 @@ input[type="submit"]{
 	width: 100%; 
 	
 	}
+	h3,h2{
+	padding: 1%;
+	}
+	.users-left{
+	width: 95%;
+	margin: 1%;
+	padding: 1%;
+	border:none;
+	}
+
+	.users-right{
+	width: 95%;
+	margin: 1%;
+	border:none;
+	}
+
 
 	.post_offer_div{
 		width: 95%;
@@ -771,7 +874,7 @@ input[type="submit"]{
 	}
 
 	.search_div{
-		width: 95%;
+		width: 80%;
 		
 	}
 
@@ -800,6 +903,20 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 1%;
+	}
+
+
+	header .header-right2{
+		display: block;
+		font-size: 12px;
+		line-height: 30px;
+		text-transform: uppercase;
+		/*border:solid 1px #111;*/
+		/*float: right;*/
+		margin: 0 auto;
+		padding:0 20px; 
+		color:#2f3640;
 	}
 }
 
@@ -810,6 +927,22 @@ input[type="submit"]{
 	width: 320px;
 	}
 	
+
+
+	.users-left{
+	width: 95%;
+	margin: 1%;
+	display: block;
+	padding: 1%;
+	}
+
+	.users-right{
+	width: 95%;
+	margin: 1%;
+	display: block;
+	border:none;
+	}
+
 	.modal-content{
 		width: 90%;
 	}
@@ -851,6 +984,7 @@ input[type="submit"]{
 
 	.signup-div{
 		width:100%;
+		padding: 1%;
 	}
 
 	.inner-left{
