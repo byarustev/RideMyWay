@@ -1,0 +1,4 @@
+[
+  "test_rideapi.py::TestRide::test_get_all_rides",
+  "test_rideapi.py::TestRide::test_single_ride"
+]
