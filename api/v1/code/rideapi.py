@@ -1,5 +1,6 @@
 from flask import Flask,request, jsonify
-from flask_restful import Api,Resource
+from flask_restful import Api,Resource,reqparse
+from flask_jwt import JWT,jwt_required #json web token
 import user
 
 app=Flask(__name__)
@@ -7,10 +8,12 @@ app=Flask(__name__)
 api=Api(app)
 
 rideslist=[
-            {"id":1,"from":"kampala","to":"masaka kavule","dept_date":"14/05/2018","time":"08:30","spots":5,"description":"this is the first ride"},
-            {"id":2,"from":"sudan","to":"kasese","dept_date":"13/05/2018","time":"09:30","spots":2,"description":"this is the second ride"},
-            {"id":3,"from":"kampala","to":"masaka kavule","dept_date":"14/05/2018","time":"08:30","spots":4,"description":"this is the third ride"}
+            {"id":1,"user_id":2,"from":"kampala","to":"masaka kavule","dept_date":"14/05/2018","time":"08:30","spots":5,"description":"this is the first ride"},
+            {"id":2,"user_id":3,"from":"sudan","to":"kasese","dept_date":"13/05/2018","time":"09:30","spots":2,"description":"this is the second ride"},
+            {"id":3,"user_id":4,"from":"kampala","to":"masaka kavule","dept_date":"14/05/2018","time":"08:30","spots":4,"description":"this is the third ride"}
             ]
+
+users_list=[]
 
 class RidesListResource(Resource):
     def get(self):
@@ -28,9 +31,19 @@ class RideResource(Resource):
             return {"status":"fail","message":"Ride Not Found"},404
 
     def post(self):
-        data=request.get_json()
+        parser=reqparse.RequestParser()
+        parser.add_argument('from',type=str,required=True,help="this field is required")
+        parser.add_argument('to',type=str,required=True,help="this field is required")
+        parser.add_argument('date',type=str,required=True,help="this field is required")
+        parser.add_argument('time',type=str,required=True,help="this field is required")
+        parser.add_argument('slots',type=str,required=True,help="this field is required")
+        parser.add_argument('description',type=str,required=True,help="this field is required")
+
+        data=parser.parse_args()
+
         temp_ride={"id":(len(rideslist)+1),
                     "from":data["from"],
+                    "user_id":4, #needs to change to currently logged in user
                     "to":data["to"],
                     "dept_date":data["date"],
                     "time":data["time"],
