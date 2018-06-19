@@ -1,17 +1,19 @@
 import jwt
 import datetime
-
+# import custom file config
 from settings import  config
 
 class User():
-    def __init__(self,_id,email,password):
+    """User class defines the methods needed by user and the attributes. on creation pass in id,name,email,password"""
+    def __init__(self,_id,name,email,password):
         self.id=_id
+        self.name=name
         self.email=email
         self.password=password
     def encode_authentication_token(self,user_id):
         """generates authentication token for a particular user"""
         try:
-            payload={"exp":datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=10),
+            payload={"exp":datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=120),
                 "iat":datetime.datetime.utcnow(),
                 "sub":user_id}
             return jwt.encode(payload,config.SECRET_KEY,algorithm='HS256') #algorithm for signing
