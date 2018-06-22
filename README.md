@@ -4,12 +4,24 @@ RideMyWay is a carpooling web application that provides drivers with the ability
 and passengers to join available ride offers.
 	
 ## features 
-- create account and login
-- adding ride offers by drivers
+- Users can post ride offers
 - Passangers can request to join a ride
-- drivers can view, accept and reject join requests
+- Drivers can view, accept and reject join requests
+- Users can 
 
 ## [visit site](https://byarustev.github.io/RideMyWay/ui/)
+
+## Coverage-badge for test_rideapi.py
+![Coverage-badge](api/v1/coverage/coverage.svg)
+
+## Coverage report for test_rideapi.py
+![Coverage-report](api/v1/coverage/coverage_report1.png)
+
+## Coverage-badge for test_user.py
+![Coverage-badge](api/v1/coverage/coverage_u.svg)
+
+## Coverage report for test_user.py
+![Coverage-report](api/v1/coverage/coverage_report2.png)
 
 ## Index Page Interface
 ![alt text](https://raw.githubusercontent.com/byarustev/RideMyWay/feature/ui/design/index.png)

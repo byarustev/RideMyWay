@@ -1,0 +1,8 @@
+language: python
+python:
+  - "3.6"
+cache: pip3
+install:
+  - pip3 install -r api/v1/requirements.txt
+script:
+  - pytest
