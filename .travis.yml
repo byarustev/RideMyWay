@@ -1,8 +1,17 @@
 language: python
+dist: trusty
+sudo: required
+group: edge
 python:
   - "3.6"
 cache: pip3
+env:
+  global:
+    - CC_TEST_REPORTER_ID=37f2d2dc6efeee0fd121d627ffc33e80adb7256b8e71bd02c82c3191e134aca3
 install:
   - pip3 install -r api/v1/requirements.txt
+  - pip install coverage
 script:
   - pytest
+  - coverage run api/v1/test_rideapi.py test -v 2 --exclude-tag=selenium
+  - npm install
