@@ -3,7 +3,8 @@ import unittest
 import rideapi
 import json
 
-from settings import  config
+from settings import config
+import helpers
 
 class TestRide(unittest.TestCase):
     def setUp(self):
@@ -12,66 +13,134 @@ class TestRide(unittest.TestCase):
     def test_configuration(self):
         self.assertTrue(config.SECRET_KEY is 'ride_api_key')
 
-    def test_get_all_rides(self):
-        response = self.app.get('/api/v1/rides')
-        self.assertEqual(response.status_code, 200)
-    
-    def test_single_ride(self):
-        response = self.app.get('/api/v1/rides/1')
-        self.assertEqual(response.status_code, 200)
-
     def test_register_user(self):
         # register user
-        response = self.app.post('/api/v1/auth/register',
-                                data = json.dumps(dict(email="sample12@mail.com",name="mike",password='12g')),
-                                content_type='application/json')
-        data = json.loads(response.data.decode())
+        register_response = helpers.register_user(self,"stephen","sample1@mail.com","123","3883")
+        data = json.loads(register_response.data.decode())
+        
         # test responce data
         self.assertTrue(data["status"] == "success")
         self.assertTrue(data["auth_token"])
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(register_response.status_code, 201)
+
+    def test_post_ride_offer(self):
+        # register user
+        register_response = helpers.register_user(self,"stephen","sample2@mail.com","123","3883")
+        data = json.loads(register_response.data.decode())
+        
+        # test register response data 
+        self.assertTrue(data["status"] == "success")
+        self.assertTrue(data["auth_token"])
+        self.assertEqual(register_response.status_code, 201)
+
+        # use user's token to register an offer
+        post_ride_response=helpers.post_ride_offer(self,data["auth_token"],"masaka","mbale","14/06/2018","13:00",3,"This is just a sample request");
+        post_ride_data=json.loads(post_ride_response.data.decode())
+        
+        # test response data
+        self.assertTrue(post_ride_data["status"] == "success")
+        self.assertEqual(post_ride_response.status_code, 201)
+
+    def test_get_all_rides(self):
+        # register user 
+        register_response = helpers.register_user(self,"stephen","sample3@mail.com","123","3883")
+        data = json.loads(register_response.data.decode())
+
+        # register atleast 2 rides using users token
+        helpers.post_ride_offer(self,data["auth_token"],"masaka","mbale","14/06/2018","13:00",3,"This is just a sample request");
+        helpers.post_ride_offer(self,data["auth_token"],"masaka","mbale","14/06/2018","13:00",3,"This is just a sample request");
+        
+        # fetch the rides
+        get_rides_response = helpers.get_all_rides(self)
+        self.assertEqual(get_rides_response.status_code, 200)
+    
+    def test_single_ride(self):
+        
+        # register user 
+        register_response = helpers.register_user(self,"stephen","sample4@mail.com","123","3883")
+        data = json.loads(register_response.data.decode())
+
+        # create the ride
+        ride_response=helpers.post_ride_offer(self,data["auth_token"],"masaka","mbale","14/06/2018","13:00",3,"This is just a sample request");
+        ride_data=json.loads(ride_response.data.decode())
+
+        # fetch the created ride
+        get_ride_response = helpers.get_particular_ride(self,ride_data['ride']['id'])
+        get_ride_data = json.loads(get_ride_response.data.decode())
+
+        self.assertEqual(get_ride_data["status"],"success")
+        self.assertEqual(get_ride_response.status_code, 200)
     
     def test_send_ride_request(self): 
-        #register the user
-        register_response = self.app.post('/api/v1/auth/register',
-                                data=json.dumps(dict(email="sample112@mail.com",name="mike",password="12w")),
-                                content_type='application/json')
-        register_data = json.loads(register_response.data.decode())
-       
-        self.assertEqual(register_response.status_code,201)
+        
+        # register atleast 2 users 
+        user1_response = helpers.register_user(self,"stephen","sample5@mail.com","123","3883")
+        user1_data = json.loads(user1_response.data.decode())
+        
+        user2_response = helpers.register_user(self,"stephen","sample6@mail.com","123","3883")
+        user2_data = json.loads(user2_response.data.decode())
 
-        #then send request using this person's token
-        request_ride = self.app.post('/api/v1/rides/1/requests',
-                                headers=dict(
-                                    Authorization='requestor '+register_data["auth_token"]
-                                ),
-                                content_type='application/json')
+        # create ride using user1's token
+        ride_response=helpers.post_ride_offer(self,user1_data["auth_token"],"masaka","mbale","14/06/2018","13:00",3,"This is just a sample request");
+        ride_data=json.loads(ride_response.data.decode())
+        
+        #then send request to join ride using this person2's token
+        request_ride = helpers.request_ride_join(self,ride_data["ride"]["id"],user2_data["auth_token"]);
+
         request_ride_data = json.loads(request_ride.data.decode())
         self.assertTrue(request_ride_data["status"] == "success")
         self.assertEqual(request_ride.status_code,201)
 
     def test_login_for_registered_user(self):
-        
-        # attempt to register user to be used in login
-        register_response = self.app.post('/api/v1/auth/register',
-                                data=json.dumps(dict(email="sampleas@mail.com",name="mike",password='12g')),
-                                content_type='application/json')
-        register_data = json.loads(register_response.data.decode())
+        """method tests for logging in of a registered user"""
+       
+        # register atleast 2 users 
+        user_response = helpers.register_user(self,"stephen","sample7@mail.com","123","3883")
+        user_data = json.loads(user_response.data.decode())
+
         #test register
-        self.assertTrue(register_data["status"] == "success")
-        self.assertTrue(register_data["auth_token"])
-        self.assertEqual(register_response.status_code, 201)
+        self.assertTrue(user_data["status"] == "success")
+        self.assertTrue(user_data["auth_token"])
+        self.assertEqual(user_response.status_code, 201)
 
         #attempt to login user
-        login_response = self.app.post('/api/v1/auth/login',
-                                data=json.dumps(dict(email="sampleas@mail.com",name="mike",password='12g')),
-                                content_type='application/json')
+        login_response = helpers.login_user(self,"sample7@mail.com","123")
         login_data = json.loads(login_response.data.decode())
 
         # test login to a user that has been created on register at the start of the method
         self.assertTrue(login_data["status"] == "success")
         self.assertTrue(login_data["auth_token"])
         self.assertEqual(login_response.status_code, 200)
+    
+    def test_get_my_trips(self):
+        """test user getting all his registered trips"""
+        
+        # register atleast 2 users 
+        user1_response = helpers.register_user(self,"stephen","sample9@mail.com","123","3883")
+        user1_data = json.loads(user1_response.data.decode())
+        
+        user2_response = helpers.register_user(self,"stephen","sample10@mail.com","123","3883")
+        user2_data = json.loads(user2_response.data.decode())
+
+        # create ride using user1's token
+        ride_response1=helpers.post_ride_offer(self,user1_data["auth_token"],"masaka","mbale","14/06/2018","13:00",3,"This is just a sample request");
+        ride_response2=helpers.post_ride_offer(self,user1_data["auth_token"],"kabale","tororo","14/06/2018","13:00",3,"This is just a sample request");
+        
+        # create ride using user2 token
+        ride_response3=helpers.post_ride_offer(self,user2_data["auth_token"],"makerere","bugolobi","14/06/2018","13:00",3,"This is just a sample request");
+        
+        ride3_data=json.loads(ride_response3.data.decode())
+        
+        #then send request to join ride using this person1's token
+        request_ride = helpers.request_ride_join(self,ride3_data["ride"]["id"],user1_data["auth_token"]);
+        
+        # request all trips for the user and check 
+        mytrips_response=helpers.get_my_trips(self,user1_data["auth_token"])
+        mytrips_data=json.loads(mytrips_response.data.decode())
+        self.assertTrue(mytrips_response.status_code,200)
+        self.assertEqual(mytrips_data["status"], "success")
+        self.assertTrue(type(mytrips_data["my_rides"]),dict)
+        
 
 if __name__ == "__main__":
     unittest.main()

@@ -9,19 +9,21 @@ from flask_restful import Api, Resource, reqparse
 
 APP = Flask(__name__)
 API = Api(APP)
-
+# 
 rideslist = [
-    {"id":1, "user_id":2, "from":"kampala", "to":"masaka kavule",
-     "dept_date":"14/05/2018", "time":"08:30", "spots":5, "description":"this is the first ride"}
+    {"id":1, "user_id":2, "from":"kampala", "to":"masaka kavule","dept_date":"14/05/2018", "time":"08:30", "spots":5, "description":"this is the first ride"}
     ]
 
 # for every user their id, name, email and password are captured
-users_list = [User(1, "Mike", "mail1@example.com", "1234")]
+users_list = [User(2, "Mike", "mail1@example.com", "1234")]
 
 #each ride request contains the id of the ride, the id of the
 #person requesting and the acceptance status
 #0 for pending 1 for accepted and 2 for rejected
-ride_requests = [{"id":1, "ride_id":2, "user_id":1, "status":0}]
+ride_requests = [
+    {"id":1, "ride_id":2, "user_id":1, "status":0},
+    {"id":1, "ride_id":3, "user_id":2, "status":0}
+                ]
 
 class RidesListResource(Resource):
     """RidesListResource extends Resource class methods get"""
@@ -62,34 +64,42 @@ class RideResource(Resource):
     def post(self):
         """creates a new ride offer"""
         parser = reqparse.RequestParser()
-        parser.add_argument('from', type=str, required=True, help="this field is required")
-        parser.add_argument('to', type=str, required=True, help="this field is required")
-        parser.add_argument('date', type=str, required=True, help="this field is required")
-        parser.add_argument('time', type=str, required=True, help="this field is required")
+        parser.add_argument('origin', type=str, required=True, help="this field is required")
+        parser.add_argument('destination', type=str, required=True, help="this field is required")
+        parser.add_argument('dept_date', type=str, required=True, help="this field is required")
+        parser.add_argument('dept_time', type=str, required=True, help="this field is required")
         parser.add_argument('slots', type=str, required=True, help="this field is required")
         parser.add_argument('description', type=str, required=True, help="this field is required")
 
         data = parser.parse_args()
+        header_token = request.headers.get('Authorization')
+        if header_token:
+            user_token = header_token.split(" ")[1]
+            user_id = User.decode_authentication_token(user_token)
 
-        temp_ride = {"id":(len(rideslist) + 1),
-                     "from":data["from"],
-                     "user_id":4, #needs to change to currently logged in user
-                     "to":data["to"],
-                     "dept_date":data["date"],
-                     "time":data["time"],
-                     "slots":data["slots"],
-                     "description":data["description"]}
+            if isinstance(user_id, int):
+                temp_ride = {"id":(len(rideslist) + 1),
+                            "from":data["origin"],
+                            "user_id":user_id, 
+                            "to":data["destination"],
+                            "dept_date":data["dept_date"],
+                            "time":data["dept_time"],
+                            "slots":data["slots"],
+                            "description":data["description"]}
         rideslist.append(temp_ride)
 
-        return {"status":"success"}, 201
+        return {"status":"success","ride":temp_ride}, 201
 
 class RegisterUser(Resource):
     """RegisterUser extends Resource class methods post for creating a new user"""
     def post(self):
         """RideResource2 extends Resource class methods post for creating a ride join request"""
+        
         parser = reqparse.RequestParser()
-        parser.add_argument('email', type=str, required=True, help="this field is required")
-        parser.add_argument('password', type=str, required=True, help="this field is required")
+        parser.add_argument('name', type=str, required=True, help="name is required")
+        parser.add_argument('email', type=str, required=True, help="email is required")
+        parser.add_argument('password', type=str, required=True, help="password field is required")
+        parser.add_argument('confirm', type=str, required=True, help="password confirmation is required")
         data = parser.parse_args()
 
         #get the
@@ -130,14 +140,36 @@ class LoginUser(Resource):
                                 "auth_token":auth_token.decode()}, 200
 
         #if no return till this point then the user was not found
-
         return {"status":"fail", "message":"invalid user name or password"}, 401
+
+class MyTrips(Resource):
+    """MyTrips class inherits from Resource"""
+    def get(self):
+        """method get returns all the rides taken or offered by the logged in user"""
+        header_token = request.headers.get('Authorization')
+        if header_token:
+            user_token = header_token.split(" ")[1]
+            user_id = User.decode_authentication_token(user_token)
+
+            if isinstance(user_id, int):
+                # then get all rides posted by this person using the got id
+                user_rides=[ride for ride in rideslist if ride["user_id"]==user_id]
+
+                # get all the ride requests by this person
+                user_requests=[request for request in ride_requests if request["user_id"]==user_id]
+                # get the requests details
+                return {"status":"success", "message":"successful return", "my_rides":user_rides,"my_requests":user_requests }
+
+        return {"status":"fail","message":"unregistered user"}, 404
+        
+
 
 API.add_resource(RidesListResource, '/api/v1/rides') #get all rides
 API.add_resource(RideResource, '/api/v1/rides/<int:ride_id>', '/api/v1/rides')
 API.add_resource(RegisterUser, '/api/v1/auth/register') #register a user
 API.add_resource(LoginUser, '/api/v1/auth/login') #register a user
 API.add_resource(RideResource2, '/api/v1/rides/<int:ride_id>/requests')
+API.add_resource(MyTrips, '/api/v1/mytrips')
 
 if __name__ == "__main__":
     APP.run(debug=True)
