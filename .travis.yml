@@ -13,5 +13,3 @@ install:
   - pip install coverage
 script:
   - pytest
-  - coverage run api/v1/test_rideapi.py test -v 2 --exclude-tag=selenium
-  - npm install
