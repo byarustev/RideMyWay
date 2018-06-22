@@ -38,7 +38,7 @@ def post_ride_offer(self,user_token,ride_from,ride_to,dept_date,ride_time,slots,
 
 def get_particular_ride(self,ride_id):
     """method get_particular_ride sends a request to return details of a given ride
-        parameters ride_id
+        parameters self,ride_id
         returns json responce"""
     return self.app.get('/api/v1/rides/'+str(ride_id))
 

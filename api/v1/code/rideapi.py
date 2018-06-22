@@ -7,15 +7,15 @@ from user import User
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
 
-APP = Flask(__name__)
-API = Api(APP)
+app = Flask(__name__)
+api = Api(app)
 # 
 rideslist = [
     {"id":1, "user_id":2, "from":"kampala", "to":"masaka kavule","dept_date":"14/05/2018", "time":"08:30", "spots":5, "description":"this is the first ride"}
     ]
 
 # for every user their id, name, email and password are captured
-users_list = [User(2, "Mike", "mail1@example.com", "1234")]
+users_list = [User(2, "Mike", "mail1@example.com", "1234",'1234')]
 
 #each ride request contains the id of the ride, the id of the
 #person requesting and the acceptance status
@@ -86,9 +86,11 @@ class RideResource(Resource):
                             "time":data["dept_time"],
                             "slots":data["slots"],
                             "description":data["description"]}
-        rideslist.append(temp_ride)
+                rideslist.append(temp_ride)
 
-        return {"status":"success","ride":temp_ride}, 201
+                return {"status":"success","ride":temp_ride}, 201
+                
+        return {"status":"fail","message":"unauthorised access"}, 401 
 
 class RegisterUser(Resource):
     """RegisterUser extends Resource class methods post for creating a new user"""
@@ -106,9 +108,12 @@ class RegisterUser(Resource):
         user_emails_mappings = {user.email: user for user in users_list}
         user_mail = user_emails_mappings.get(data["email"], None)
 
+        if data["password"]!=data["confirm"]:
+            return {"status":"fail","message":"password mismatch"}, 400
+        
         if not user_mail:
             # create user
-            temp_user = User((len(users_list) + 1), data["name"], data["email"], data["password"])
+            temp_user = User((len(users_list) + 1), data["name"], data["email"], data["password"],data['confirm'])
             users_list.append(temp_user)
             # get auth token
             auth_token = temp_user.encode_authentication_token(temp_user.id)
@@ -164,12 +169,12 @@ class MyTrips(Resource):
         
 
 
-API.add_resource(RidesListResource, '/api/v1/rides') #get all rides
-API.add_resource(RideResource, '/api/v1/rides/<int:ride_id>', '/api/v1/rides')
-API.add_resource(RegisterUser, '/api/v1/auth/register') #register a user
-API.add_resource(LoginUser, '/api/v1/auth/login') #register a user
-API.add_resource(RideResource2, '/api/v1/rides/<int:ride_id>/requests')
-API.add_resource(MyTrips, '/api/v1/mytrips')
+api.add_resource(RidesListResource, '/api/v1/rides') #get all rides
+api.add_resource(RideResource, '/api/v1/rides/<int:ride_id>', '/api/v1/rides')
+api.add_resource(RegisterUser, '/api/v1/auth/register') #register a user
+api.add_resource(LoginUser, '/api/v1/auth/login') #register a user
+api.add_resource(RideResource2, '/api/v1/rides/<int:ride_id>/requests')
+api.add_resource(MyTrips, '/api/v1/mytrips')
 
 if __name__ == "__main__":
-    APP.run(debug=True)
+    app.run(debug=True)

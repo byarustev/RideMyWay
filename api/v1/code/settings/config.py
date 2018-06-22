@@ -1,2 +1,1 @@
-"""Configurations file"""
-SECRET_KEY = "ride_api_key"
+SECRET_KEY="ride_api_key"

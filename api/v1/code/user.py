@@ -6,11 +6,12 @@ from settings import  config
 class User():
     """User class defines the methods needed by user and the attributes.
         on creation pass in id,name,email,password"""
-    def __init__(self, _id, name, email, password):
+    def __init__(self, _id, name, email, password,confirm):
         self.id = _id
         self.name = name
         self.email = email
         self.password = password
+        self.confirm = confirm
     def encode_authentication_token(self, user_id):
         """generates authentication token for a particular user"""
         try:
