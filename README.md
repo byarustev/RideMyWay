@@ -11,6 +11,9 @@ and passengers to join available ride offers.
 
 ## [visit site](https://byarustev.github.io/RideMyWay/ui/)
 
+## Travis Ci Badge
+[![Build Status](https://travis-ci.org/byarustev/RideMyWay.svg?branch=develop)](https://travis-ci.org/byarustev/RideMyWay)
+
 ## Coverage-badge for test_rideapi.py
 ![Coverage-badge](api/v1/coverage/coverage.svg)
 
