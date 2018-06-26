@@ -1,10 +1,10 @@
 import pytest
 import unittest
-import rideapi
+from api import rideapi
 import json
-
-from settings import config
-import helpers
+from api.user import User
+from api.settings import config
+from api.tests import helpers
 
 class TestRide(unittest.TestCase):
     def setUp(self):

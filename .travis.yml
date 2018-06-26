@@ -2,7 +2,14 @@ language: python
 python:
   - "3.6"
 cache: pip3
+
 install:
-  - pip3 install -r api/v1/requirements.txt
+  - pip3 install -r requirements.txt
+  - pip install coveralls
 script:
-  - pytest
+    - nosetests --with-coverage --cover-tests --cover-package=api/tests 
+    - coverage report
+after_success:
+    - cd api
+    - coveralls
+    - cd ../

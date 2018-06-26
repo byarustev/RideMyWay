@@ -1,8 +1,8 @@
 import jwt
 import unittest
 import pytest
-from user import User
-from settings import  config
+from api.user import User
+from api.settings import  config
 
 class TestUser(unittest.TestCase):
     def setUp(self):

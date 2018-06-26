@@ -1,7 +1,7 @@
 import datetime
 import jwt
 # import custom file config
-from settings import  config
+from api.settings import  config
 
 class User():
     """User class defines the methods needed by user and the attributes.

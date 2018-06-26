@@ -2,7 +2,7 @@
 File for Api logic
 """
 #custom files imports
-from user import User
+from api.user import User
 
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
