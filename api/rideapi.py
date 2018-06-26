@@ -2,11 +2,13 @@
 File for Api logic
 """
 #custom files imports
-from api.user import User
-
 from flask import Flask, request
 from flask_restful import Api, Resource, reqparse
+import sys, os
 
+sys.path.append(os.path.pardir)
+
+from api.user import User
 app = Flask(__name__)
 api = Api(app)
 # 

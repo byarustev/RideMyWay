@@ -1,1 +1,1 @@
-web: gunicorn api.rideapi
+web: gunicorn api.rideapi:app
