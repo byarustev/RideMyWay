@@ -10,6 +10,5 @@ script:
     - nosetests --with-coverage --cover-tests --cover-package=api/tests 
     - coverage report
 after_success:
-    - cd api
     - coveralls
-    - cd ../
+   
