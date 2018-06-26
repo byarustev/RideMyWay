@@ -7,3 +7,4 @@ PyJWT==1.4.2
 pylint==1.9.2
 pytest==3.6.1
 coverage-badge==0.2.0
+gunicorn==19.8.1
