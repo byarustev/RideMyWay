@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/byarustev/RideMyWay.svg?branch=develop)](https://travis-ci.org/byarustev/RideMyWay)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e2fc728dd654f09e2d68/maintainability)](https://codeclimate.com/github/byarustev/RideMyWay/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/e2fc728dd654f09e2d68/test_coverage)](https://codeclimate.com/github/byarustev/RideMyWay/test_coverage)
+
+
 # RideMyWay
 
 RideMyWay is a carpooling web application that provides drivers with the ability to create ride offers
@@ -11,14 +16,6 @@ and passengers to join available ride offers.
 - Users can respond to friend requests 
 
 https://byarustev.github.io/RideMyWay/ui/
-
-[![Build Status](https://travis-ci.org/byarustev/RideMyWay.svg?branch=develop)](https://travis-ci.org/byarustev/RideMyWay)
-
-
-[![Maintainability](https://api.codeclimate.com/v1/badges/e2fc728dd654f09e2d68/maintainability)](https://codeclimate.com/github/byarustev/RideMyWay/maintainability)
-
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e2fc728dd654f09e2d68/test_coverage)](https://codeclimate.com/github/byarustev/RideMyWay/test_coverage)
-
 
 ## Index Page Interface
 ![alt text](https://raw.githubusercontent.com/byarustev/RideMyWay/feature/ui/design/index.png)
