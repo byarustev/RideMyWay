@@ -27,14 +27,14 @@ ride_requests = [
     {"id":1, "ride_id":3, "user_id":2, "status":0}
                 ]
 
-class RidesListResource(Resource):
-    """RidesListResource extends Resource class methods get"""
+class RidesList(Resource):
+    """RidesList extends Resource class methods get """
     def get(self):
         """returns a ride with the passed id"""
         return {"rides":rideslist}, 200
 
-class RideResource2(Resource):
-    """class RideResource2 extends Resource class methods post for creating a ride join request"""
+class RequestRide(Resource):
+    """class RequestRide extends Resource class methods post"""
     def post(self, ride_id):
         """post method creates a ride request basing on the logged in user"""
         header_token = request.headers.get('Authorization')
@@ -51,8 +51,8 @@ class RideResource2(Resource):
 
         return {"status":"fail", "message":"Request Rejected, Login to request a ride"}, 401
 
-class RideResource(Resource):
-    """class RideResource extends Resource class methods get
+class SingleRide(Resource):
+    """class SingleRide extends Resource class methods get
      which returns a given ride, post for creating a ride offer"""
     def get(self, ride_id):
         """returns a ride matching a given id"""
@@ -171,11 +171,11 @@ class MyTrips(Resource):
         
 
 
-api.add_resource(RidesListResource, '/api/v1/rides') #get all rides
-api.add_resource(RideResource, '/api/v1/rides/<int:ride_id>', '/api/v1/rides')
+api.add_resource(RidesList, '/api/v1/rides') #get all rides
+api.add_resource(SingleRide, '/api/v1/rides/<int:ride_id>', '/api/v1/rides')
 api.add_resource(RegisterUser, '/api/v1/auth/register') #register a user
 api.add_resource(LoginUser, '/api/v1/auth/login') #register a user
-api.add_resource(RideResource2, '/api/v1/rides/<int:ride_id>/requests')
+api.add_resource(RequestRide, '/api/v1/rides/<int:ride_id>/requests')
 api.add_resource(MyTrips, '/api/v1/mytrips')
 
 if __name__ == "__main__":
