@@ -1,7 +1,6 @@
 [![Build Status](https://travis-ci.org/byarustev/RideMyWay.svg?branch=develop)](https://travis-ci.org/byarustev/RideMyWay)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e2fc728dd654f09e2d68/maintainability)](https://codeclimate.com/github/byarustev/RideMyWay/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/e2fc728dd654f09e2d68/test_coverage)](https://codeclimate.com/github/byarustev/RideMyWay/test_coverage)
-
+[![Coverage Status](https://coveralls.io/repos/github/byarustev/RideMyWay/badge.svg?branch=develop)](https://coveralls.io/github/byarustev/RideMyWay?branch=develop)
 
 # RideMyWay
 
