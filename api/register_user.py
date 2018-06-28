@@ -20,6 +20,7 @@ class RegisterUser(Resource):
 
         # create connection and set cursor
         con=DataBaseConnection()
+        cursor=con.cursor
         dict_cursor=con.dict_cursor
 
         if data["password"]!=data["confirm"]:
