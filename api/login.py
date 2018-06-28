@@ -6,6 +6,7 @@ sys.path.append(os.path.pardir)
 
 from api.modals.user import User
 from api.settings.config import  rideslist,users_list,ride_requests
+from api.db import DataBaseConnection 
 
 class LoginUser(Resource):
     """LoginUses extends Resource methods post which logins i given user"""
@@ -17,18 +18,21 @@ class LoginUser(Resource):
         parser.add_argument('password', type=str, required=True, help="this field is required")
 
         data = parser.parse_args()
-        user_emails_mappings = {user.email: user for user in users_list}
-        user_mail = user_emails_mappings.get(data["email"], None)
+        
+        # create connection and set cursor
+        con=DataBaseConnection()
+        dict_cursor=con.dict_cursor
 
-        if user_mail:
+        user_data=User.get_user_by_email(dict_cursor,data["email"])
+
+        if user_data:
             #find if the user passwords match
-            for temp_user in users_list:
-                if temp_user.email == user_mail.email:
-                    if temp_user.password == data["password"]:
-                        # generate token
-                        auth_token = temp_user.encode_authentication_token(temp_user.id)
-                        return {"status":"success", "message":"suceesful login",
-                                "auth_token":auth_token.decode()}, 200
+            if user_data["password"] == data["password"]:
+                # generate token
+                auth_token = User.encode_authentication_token(user_data['user_id'])
+                return {"status":"success", "message":"suceesful login",
+                        "auth_token":auth_token.decode()}, 200
+                        
 
         #if no return till this point then the user was not found
         return {"status":"fail", "message":"invalid user name or password"}, 401

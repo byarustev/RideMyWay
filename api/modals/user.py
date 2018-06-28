@@ -51,7 +51,6 @@ class User():
         query_string="SELECT * FROM users WHERE email = %s "
         dict_cursor.execute(query_string,[email])
         row=dict_cursor.fetchone()
-        pprint(row)
         return row
     
     @staticmethod

@@ -18,7 +18,7 @@ class RegisterUser(Resource):
         parser.add_argument('confirm', type=str, required=True, help="password confirmation is required")
         data = parser.parse_args()
 
-        # create connection and set cursors
+        # create connection and set cursor
         con=DataBaseConnection()
         cursor=con.cursor
         dict_cursor=con.dict_cursor
