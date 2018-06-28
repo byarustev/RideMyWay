@@ -6,6 +6,14 @@ cache: pip3
 install:
   - pip3 install -r requirements.txt
   - pip install coveralls
+
+services:
+  - postgresql
+before_script:
+  - psql -c 'create database myway;' -U postgres
+  - cd api/
+  - python db.py
+  - cd ..
 script:
     - nosetests --with-coverage --cover-tests --cover-package=api/tests 
     - coverage report
