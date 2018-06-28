@@ -2,6 +2,7 @@ import datetime
 import jwt
 # import custom file config
 from api.settings import  config
+from pprint import pprint
 
 class User():
     """User class defines the methods needed by user and the attributes.
@@ -12,6 +13,7 @@ class User():
         self.email = email
         self.password = password
         self.confirm = confirm
+
     @staticmethod
     def encode_authentication_token(user_id):
         """generates authentication token for a particular user"""
@@ -37,8 +39,23 @@ class User():
         except jwt.InvalidTokenError:
             return "Invalid token. Please Login Again"
     
-    def insert_user_data(self,cursor,name,email,password):
+    @staticmethod
+    def create_user(cursor,name,email,password):
         query_string="INSERT INTO users (name,email,password) VALUES (%s,%s,%s)"
         cursor.execute(query_string,(name,email,password))
-        return 
-            
+    
+    @staticmethod   
+    def get_user_by_email(dict_cursor,email):
+        
+        # query_string="SELECT * FROM users WHERE email='{0}' ".format(email)
+        query_string="SELECT * FROM users WHERE email = %s "
+        dict_cursor.execute(query_string,[email])
+        row=dict_cursor.fetchone()
+        pprint(row)
+        return row
+    
+    @staticmethod
+    def get_all_users(dict_cursor):
+        query_string="SELECT * FROM users"
+        dict_cursor.execute(query_string)
+        return dict_cursor.fetchall()
