@@ -2,7 +2,7 @@ import pytest
 import unittest
 from api import rideapi
 import json
-from api.user import User
+from api.modals.user import User
 from api.settings import config
 from api.tests import helpers
 

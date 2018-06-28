@@ -1,7 +1,7 @@
 import jwt
 import unittest
 import pytest
-from api.user import User
+from api.modals.user import User
 from api.settings import  config
 
 class TestUser(unittest.TestCase):
