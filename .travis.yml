@@ -12,7 +12,7 @@ services:
 before_script:
   - psql -c 'create database myway;' -U postgres
   - cd api/
-  - python create_table.py
+  - python db.py
   - cd ..
 script:
     - nosetests --with-coverage --cover-tests --cover-package=api/tests 
