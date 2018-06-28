@@ -2,7 +2,10 @@ language: python
 python:
   - "3.6"
 cache: pip3
-
+env:
+  global:
+  - PGPORT=5433
+  
 install:
   - pip3 install -r requirements.txt
   - pip install coveralls
