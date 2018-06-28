@@ -33,6 +33,5 @@ class LoginUser(Resource):
                 return {"status":"success", "message":"suceesful login",
                         "auth_token":auth_token.decode()}, 200
                         
-
         #if no return till this point then the user was not found
         return {"status":"fail", "message":"invalid user name or password"}, 401
