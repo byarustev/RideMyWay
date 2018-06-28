@@ -26,7 +26,6 @@ class RegisterUser(Resource):
         if data["password"]!=data["confirm"]:
             return {"status":"fail","message":"password mismatch"}, 400
         
-        
         # check if user with this email exists
         user_data=User.get_user_by_email(dict_cursor,data["email"])
         
