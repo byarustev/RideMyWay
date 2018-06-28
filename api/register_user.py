@@ -4,6 +4,7 @@ import sys, os
 sys.path.append(os.path.pardir)
 from api.modals.user import User
 from api.settings.config import  rideslist,users_list,ride_requests
+from api.db import DataBaseConnection 
 
 class RegisterUser(Resource):
     """RegisterUser extends Resource class methods post for creating a new user"""
@@ -26,10 +27,15 @@ class RegisterUser(Resource):
         
         if not user_mail:
             # create user
-            temp_user = User((len(users_list) + 1), data["name"], data["email"], data["password"],data['confirm'])
-            users_list.append(temp_user)
-            # get auth token
-            auth_token = temp_user.encode_authentication_token(temp_user.id)
+            con=DataBaseConnection()
+            cursor=con.cursor
+            query_string="INSERT INTO users (name,email,password) VALUES (%s,%s,%s)"
+            cursor.execute(query_string,(data["name"],data["email"],data["password"]))
+            
+            
+            # get auth token 
+            auth_token = User.encode_authentication_token(1) #static
+            
             return {"auth_token":auth_token.decode(), "status":"success",
                     "message":"account created"}, 201
         return {"status":"fail", "message":"email already taken"}, 400

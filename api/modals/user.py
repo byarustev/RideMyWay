@@ -12,7 +12,8 @@ class User():
         self.email = email
         self.password = password
         self.confirm = confirm
-    def encode_authentication_token(self, user_id):
+    @staticmethod
+    def encode_authentication_token(user_id):
         """generates authentication token for a particular user"""
         try:
             payload = {"exp":datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=120),
@@ -35,3 +36,9 @@ class User():
         
         except jwt.InvalidTokenError:
             return "Invalid token. Please Login Again"
+    
+    def insert_user_data(self,cursor,name,email,password):
+        query_string="INSERT INTO users (name,email,password) VALUES (%s,%s,%s)"
+        cursor.execute(query_string,(name,email,password))
+        return 
+            

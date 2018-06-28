@@ -8,7 +8,7 @@ class DataBaseConnection:
             self.connection = psycopg2.connect(database="myway", user="postgres", password="postgres12", host="localhost", port="5433")
             self.connection.autocommit = True
             self.cursor = self.connection.cursor()
-            self.dict_cursor = self.connection.cursor(cursor_factory=extra.DictCursor)
+            # self.dict_cursor = self.connection.cursor(cursor_factory=extra.DictCursor)
         except Exception as exp:
             pprint(exp)
 
