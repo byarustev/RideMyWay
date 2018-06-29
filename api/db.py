@@ -27,10 +27,10 @@ class DataBaseConnection:
             CREATE TABLE IF NOT EXISTS rides (
                 ride_id SERIAL PRIMARY KEY,
                 user_id INTEGER NOT NULL,
-                orign VARCHAR(255) NOT NULL,
+                origin VARCHAR(255) NOT NULL,
                 destination VARCHAR(255) NOT NULL,
-                depature_time timestamp,
-                spots integer,
+                departure_time timestamp,
+                slots integer,
                 description text,
                 FOREIGN KEY (user_id)
                     REFERENCES users (user_id)

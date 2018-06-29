@@ -18,7 +18,7 @@ class User():
     def encode_authentication_token(user_id):
         """generates authentication token for a particular user"""
         try:
-            payload = {"exp":datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=120),
+            payload = {"exp":datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=360),
                        "iat":datetime.datetime.utcnow(),
                        "sub":user_id}
             return jwt.encode(payload, config.SECRET_KEY, algorithm='HS256') #algorithm for signing

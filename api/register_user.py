@@ -3,7 +3,6 @@ from flask_restful import Api, Resource, reqparse
 import sys, os
 sys.path.append(os.path.pardir)
 from api.modals.user import User
-from api.settings.config import  rideslist,users_list,ride_requests
 from api.db import DataBaseConnection 
 
 class RegisterUser(Resource):

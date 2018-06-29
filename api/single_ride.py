@@ -4,7 +4,8 @@ import sys, os
 
 sys.path.append(os.path.pardir)
 from api.modals.user import User
-from api.settings.config import  rideslist,users_list,ride_requests
+from api.modals.ride import Ride
+from api.db import DataBaseConnection 
 
 class SingleRide(Resource):
     """class SingleRide extends Resource class methods get
@@ -21,12 +22,11 @@ class SingleRide(Resource):
     def post(self):
         """creates a new ride offer"""
         parser = reqparse.RequestParser()
-        parser.add_argument('origin', type=str, required=True, help="this field is required")
-        parser.add_argument('destination', type=str, required=True, help="this field is required")
-        parser.add_argument('dept_date', type=str, required=True, help="this field is required")
-        parser.add_argument('dept_time', type=str, required=True, help="this field is required")
-        parser.add_argument('slots', type=str, required=True, help="this field is required")
-        parser.add_argument('description', type=str, required=True, help="this field is required")
+        parser.add_argument('origin', type=str, required=True, help="origin field is required")
+        parser.add_argument('destination', type=str, required=True, help="destination field is required")
+        parser.add_argument('departure_time', type=str, required=True, help="departure_time field is required")
+        parser.add_argument('slots', type=str, required=True, help="slots field is required")
+        parser.add_argument('description', type=str, required=True, help="description field is required")
 
         data = parser.parse_args()
         header_token = request.headers.get('Authorization')
@@ -35,16 +35,12 @@ class SingleRide(Resource):
             user_id = User.decode_authentication_token(user_token)
 
             if isinstance(user_id, int):
-                temp_ride = {"id":(len(rideslist) + 1),
-                            "from":data["origin"],
-                            "user_id":user_id, 
-                            "to":data["destination"],
-                            "dept_date":data["dept_date"],
-                            "time":data["dept_time"],
-                            "slots":data["slots"],
-                            "description":data["description"]}
-                rideslist.append(temp_ride)
+                temp_ride = Ride(None, user_id, data["origin"], data["destination"], data["departure_time"], data["slots"], data["description"])
 
-                return {"status":"success","ride":temp_ride}, 201
+                # create connection and set cursor
+                con=DataBaseConnection()
+                cursor=con.cursor
+                Ride.create_ride(cursor,temp_ride)
+                return {"status":"success","ride":temp_ride.__dict__}, 201
                 
         return {"status":"fail","message":"unauthorised access"}, 401 
