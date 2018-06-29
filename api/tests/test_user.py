@@ -1,12 +1,10 @@
-import jwt
 import unittest
-import pytest
 from api.modals.user import User
-from api.settings import  config
+
 
 class TestUser(unittest.TestCase):
     def setUp(self):
-        self.test_user = User(1, 'name', 'example@mail.com', '12345','12345')
+        self.test_user = User(1, 'name', 'example@mail.com', '12345', '12345')
         
     def test_authentication_encoding(self):
         auth_token = self.test_user.encode_authentication_token(self.test_user.id)

@@ -1,11 +1,12 @@
-from flask import Flask, request
-from flask_restful import Api, Resource, reqparse
-import sys, os
-
-sys.path.append(os.path.pardir)
 from api.modals.user import User
 from api.modals.ride import Ride
-from api.db import DataBaseConnection 
+from api.settings.config import rideslist
+from flask import request
+from flask_restful import Resource, reqparse
+import sys
+import os
+sys.path.append(os.path.pardir)
+
 
 class SingleRide(Resource):
     """class SingleRide extends Resource class methods get
@@ -15,9 +16,9 @@ class SingleRide(Resource):
 
         ride = [temp_ride for temp_ride in rideslist if temp_ride["id"] == ride_id]
         if ride:
-            return {"status":"success", "ride":ride, "message":"ride found"}, 200
+            return {"status": "success", "ride": ride, "message": "ride found"}, 200
             
-        return {"status":"fail", "message":"Ride Not Found"}, 404
+        return {"status": "fail", "message": "Ride Not Found"}, 404
 
     def post(self):
         """creates a new ride offer"""
@@ -37,10 +38,7 @@ class SingleRide(Resource):
             if isinstance(user_id, int):
                 temp_ride = Ride(None, user_id, data["origin"], data["destination"], data["departure_time"], data["slots"], data["description"])
 
-                # create connection and set cursor
-                con=DataBaseConnection()
-                cursor=con.cursor
-                Ride.create_ride(cursor,temp_ride)
-                return {"status":"success","ride":temp_ride.__dict__}, 201
+                Ride.create_ride(temp_ride)
+                return {"status": "success", "ride": temp_ride.__dict__}, 201
                 
-        return {"status":"fail","message":"unauthorised access"}, 401 
+        return {"status": "fail", "message": "unauthorised access"}, 401

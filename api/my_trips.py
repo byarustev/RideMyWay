@@ -1,10 +1,11 @@
-from flask import Flask, request
-from flask_restful import Api, Resource, reqparse
-import sys, os
+from api.modals.user import User
+from api.settings.config import ride_requests, rideslist
+from flask import request
+from flask_restful import Resource
+import sys
+import os
 sys.path.append(os.path.pardir)
 
-from api.modals.user import User
-from api.settings.config import  rideslist,users_list,ride_requests
 
 class MyTrips(Resource):
     """MyTrips class inherits from Resource"""
@@ -17,12 +18,12 @@ class MyTrips(Resource):
 
             if isinstance(user_id, int):
                 # then get all rides posted by this person using the got id
-                user_rides=[ride for ride in rideslist if ride["user_id"]==user_id]
+                user_rides = [ride for ride in rideslist if ride["user_id"] == user_id]
 
                 # get all the ride requests by this person
-                user_requests=[request for request in ride_requests if request["user_id"]==user_id]
+                user_requests = [user_request for user_request in ride_requests if request["user_id"]==user_id]
                 # get the requests details
-                return {"status":"success", "message":"successful return", "my_rides":user_rides,"my_requests":user_requests }
+                return {"status": "success", "message": "successful return",
+                        "my_rides": user_rides, "my_requests": user_requests}
 
-        return {"status":"fail","message":"unregistered user"}, 404
-  
+        return {"status": "fail", "message": "unregistered user"}, 404

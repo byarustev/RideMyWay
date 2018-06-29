@@ -2,6 +2,7 @@ import psycopg2
 import psycopg2.extras as extra
 from pprint import pprint
 
+
 class DataBaseConnection:
     def __init__(self):
         try:
@@ -80,6 +81,6 @@ class DataBaseConnection:
             self.cursor.execute(query)
         
 
-if __name__=="__main__":
+if __name__ == "__main__":
     db_connection = DataBaseConnection()
     db_connection.create_tables()

@@ -1,10 +1,10 @@
 import datetime
 import jwt
-# import custom file config
-from api.settings import  config
-from pprint import pprint
 
-class User():
+from api.settings import config
+
+
+class User:
     """User class defines the methods needed by user and the attributes.
         on creation pass in id,name,email,password"""
     def __init__(self, _id, name, email, password,confirm):
@@ -18,10 +18,10 @@ class User():
     def encode_authentication_token(user_id):
         """generates authentication token for a particular user"""
         try:
-            payload = {"exp":datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=360),
-                       "iat":datetime.datetime.utcnow(),
-                       "sub":user_id}
-            return jwt.encode(payload, config.SECRET_KEY, algorithm='HS256') #algorithm for signing
+            payload = {"exp": datetime.datetime.utcnow() + datetime.timedelta(days=0, seconds=360),
+                       "iat": datetime.datetime.utcnow(),
+                       "sub": user_id}
+            return jwt.encode(payload, config.SECRET_KEY, algorithm='HS256')  # algorithm for signing
         except Exception as exp:
             return exp
 
@@ -30,7 +30,7 @@ class User():
         """Decodes the auth_token into the user id and returns the user id"""
 
         try:
-            payload = jwt.decode(auth_token,config.SECRET_KEY)
+            payload = jwt.decode(auth_token, config.SECRET_KEY)
             return payload['sub']
 
         except jwt.ExpiredSignatureError:
@@ -40,21 +40,20 @@ class User():
             return "Invalid token. Please Login Again"
     
     @staticmethod
-    def create_user(cursor,name,email,password):
-        query_string="INSERT INTO users (name,email,password) VALUES (%s,%s,%s)"
-        cursor.execute(query_string,(name,email,password))
+    def create_user(cursor, name, email, password):
+        query_string = "INSERT INTO users (name,email,password) VALUES (%s,%s,%s)"
+        cursor.execute(query_string, (name, email, password))
     
     @staticmethod   
-    def get_user_by_email(dict_cursor,email):
-        
-        # query_string="SELECT * FROM users WHERE email='{0}' ".format(email)
-        query_string="SELECT * FROM users WHERE email = %s "
-        dict_cursor.execute(query_string,[email])
-        row=dict_cursor.fetchone()
+    def get_user_by_email(dict_cursor, email):
+
+        query_string = "SELECT * FROM users WHERE email = %s "
+        dict_cursor.execute(query_string, [email])
+        row = dict_cursor.fetchone()
         return row
     
     @staticmethod
     def get_all_users(dict_cursor):
-        query_string="SELECT * FROM users"
+        query_string = "SELECT * FROM users"
         dict_cursor.execute(query_string)
         return dict_cursor.fetchall()

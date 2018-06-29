@@ -1,19 +1,16 @@
-"""
-File for Api logic
-"""
-#custom files imports
-from flask import Flask, request
-from flask_restful import Api, Resource, reqparse
-import sys, os
-
-sys.path.append(os.path.pardir)
-
 from api.rides import RidesList
 from api.single_ride import SingleRide
 from api.request_ride import RequestRide
 from api.register_user import RegisterUser
 from api.login import LoginUser
 from api.my_trips import MyTrips
+
+from flask import Flask
+from flask_restful import Api
+import sys
+import os
+sys.path.append(os.path.pardir)
+
 
 app = Flask(__name__)
 api = Api(app)

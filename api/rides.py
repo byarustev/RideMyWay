@@ -1,12 +1,18 @@
-from flask import Flask, request
-from flask_restful import Api, Resource, reqparse
-import sys, os
+from api.modals.ride import Ride
+from flask_restful import Resource
+import sys
+import os
 sys.path.append(os.path.pardir)
 
-from api.settings.config import  rideslist,users_list,ride_requests
 
 class RidesList(Resource):
     """RidesList extends Resource class methods get """
     def get(self):
-        """returns a ride with the passed id"""
-        return {"rides":rideslist}, 200
+        """returns all the rides in the system"""
+        rides = []
+        rows = Ride.get_all_rides()
+        for row in rows:
+            temp_ride = Ride(row["ride_id"], row["user_id"], row["origin"], row["destination"],
+                             str(row["departure_time"]), row["slots"], row["description"])
+            rides.append(temp_ride.__dict__)
+        return {"rides": rows}, 200
